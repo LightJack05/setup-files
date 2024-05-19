@@ -76,7 +76,6 @@ network-manager-applet
 networkmanager-openvpn
 npm
 ntfs-3g
-nwg-drawer
 nwg-look
 obsidian
 onedrive-abraunegg
