@@ -1,5 +1,3 @@
-adwaita-qt5-git
-adwaita-qt6-git
 alacritty
 alsa-utils
 baobab
@@ -61,7 +59,6 @@ libreoffice-fresh
 linux
 linux-firmware
 linux-headers
-logisim-evolution
 lolcat
 loupe
 lvm2
@@ -78,7 +75,6 @@ npm
 ntfs-3g
 nwg-look
 obsidian
-onedrive-abraunegg
 openssh
 openvpn
 orca
@@ -115,7 +111,6 @@ usbutils
 uwufetch
 vi
 vim
-visual-studio-code-bin
 viu
 vulkan-intel
 waybar
@@ -131,3 +126,8 @@ xwaylandvideobridge
 yelp
 zip
 zsh
+adwaita-qt5-git
+adwaita-qt6-git
+logisim-evolution
+onedrive-abraunegg
+visual-studio-code-bin
