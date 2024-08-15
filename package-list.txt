@@ -108,6 +108,7 @@ python-dlib
 python-pam
 python-pip
 python-pynvim
+qemu-desktop
 qt5
 qt5ct
 qt6ct
@@ -181,6 +182,7 @@ zsh
 java-openjfx-bin
 hyprpicker
 howdy
+brave-bin
 cura-bin
 adwaita-qt5-git
 adwaita-qt6-git
