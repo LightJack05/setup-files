@@ -56,14 +56,13 @@ hyprland
 hyprlock
 hyprpaper
 inetutils
-intel-media-driver
-intel-ucode
 iw
 jdk21-openjdk
 kitty
 lazygit
 less
 libreoffice-fresh
+libva-mesa-driver
 linux
 linux-firmware
 linux-headers
@@ -96,6 +95,7 @@ pacman-contrib
 pam-python
 pavucontrol
 pinta
+pipewire-alsa
 polkit-kde-agent
 postfix
 power-profiles-daemon
@@ -156,7 +156,6 @@ virt-manager
 virt-viewer
 visual-studio-code-bin
 viu
-vulkan-intel
 vulkan-tools
 waybar
 wev
