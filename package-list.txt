@@ -63,12 +63,8 @@ jdk21-openjdk
 kitty
 lazygit
 less
-lib32-vulkan-intel
 libreoffice-fresh
 linux
-linux-custom
-linux-custom-docs
-linux-custom-headers
 linux-firmware
 linux-headers
 lolcat
