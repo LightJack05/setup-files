@@ -158,6 +158,7 @@ visual-studio-code-bin
 viu
 vulkan-tools
 waybar
+wpaperd
 wev
 wget
 whois
