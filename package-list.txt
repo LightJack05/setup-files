@@ -27,6 +27,7 @@ dmidecode
 dnsmasq
 dosfstools
 dotnet-sdk
+easyeffects
 efibootmgr
 evince
 evtest
@@ -66,6 +67,7 @@ libva-mesa-driver
 linux
 linux-firmware
 linux-headers
+lsp-plugins
 lolcat
 luarocks
 lvm2
@@ -182,3 +184,4 @@ brave-bin
 cura-bin
 adwaita-qt5-git
 adwaita-qt6-git
+zen-browser-bin
