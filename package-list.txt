@@ -180,7 +180,6 @@ zsh
 java-openjfx-bin
 hyprpicker
 howdy
-brave-bin
 cura-bin
 adwaita-qt5-git
 adwaita-qt6-git
