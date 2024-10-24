@@ -17,7 +17,6 @@ clamav
 cliphist
 cowsay
 cpio
-cuda
 cudnn
 cups
 cups-pdf
@@ -179,7 +178,6 @@ zip
 zsh
 java-openjfx-bin
 hyprpicker
-howdy
 cura-bin
 adwaita-qt5-git
 adwaita-qt6-git
