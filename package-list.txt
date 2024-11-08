@@ -82,6 +82,7 @@ neovim
 network-manager-applet
 networkmanager
 networkmanager-openvpn
+noto-fonts-emoji
 npm
 nss-mdns
 ntfs-3g
