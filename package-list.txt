@@ -182,3 +182,4 @@ cura-bin
 adwaita-qt5-git
 adwaita-qt6-git
 zen-browser-bin
+wofi-emoji
