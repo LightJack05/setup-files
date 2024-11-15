@@ -143,6 +143,7 @@ texlive-plaingeneric
 texlive-pstricks
 texlive-publishers
 texlive-xetex
+texlive-latexextra
 tk
 torbrowser-launcher
 totem
