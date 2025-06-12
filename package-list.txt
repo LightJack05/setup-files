@@ -79,7 +79,7 @@ maven
 mesa-utils
 minecraft-launcher
 nano
-nautilus
+thunar
 neofetch
 neovim
 network-manager-applet
