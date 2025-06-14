@@ -195,5 +195,5 @@ hyprpicker
 cura-bin
 adwaita-qt5-git
 adwaita-qt6-git
-zen-browser-bin
-wofi-emoji
+catppuccin-cursors-mocha
+catppuccin-gtk-theme-mocha
