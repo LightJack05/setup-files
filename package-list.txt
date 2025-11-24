@@ -34,7 +34,6 @@ fastfetch
 file-roller
 figlet
 firefox
-gcc13
 gdb
 gimp
 git
@@ -62,7 +61,6 @@ jdk21-openjdk
 kitty
 krita
 kubectl
-lazygit
 less
 libreoffice-fresh
 libva-mesa-driver
@@ -190,7 +188,6 @@ xwaylandvideobridge
 yelp
 zip
 zsh
-java-openjfx-bin
 hyprpicker
 cura-bin
 adwaita-qt5-git
