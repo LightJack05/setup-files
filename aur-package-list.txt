@@ -1,0 +1,11 @@
+autopsy
+burpsuite
+cura-bin
+downgrade
+gamescope-session-steam-git
+minecraft-launcher
+pinta
+qt6ct-kde
+vmware-workstation
+wofi-emoji
+xwaylandvideobridge
