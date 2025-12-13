@@ -63,6 +63,11 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Set up sudo for wheel group
 sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
 
+# Enable the multilib repository
+sed -i '/^\[multilib\]$/,/^Include/'s/^#//' /etc/pacman.conf
+pacman -Sy
+
+
 ./user.sh
 sudo -u LightJack05 '/init/setup-files/yay.sh'
 sudo -u LightJack05 '/init/setup-files/packages.sh'
