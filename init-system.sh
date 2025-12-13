@@ -15,7 +15,7 @@ on_error() {
 }
 
 # Move to setup files directory
-cd /tmp/setup-files/
+cd /init/setup-files/
 
 # Set up timezone and localization
 echo 'Setting up base system...'
@@ -65,7 +65,7 @@ sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
 
 ./yay.sh
 ./user.sh
-su - LightJack05 -c '/tmp/setup-files/packages.sh'
+su - LightJack05 -c '/init/setup-files/packages.sh'
 ./services.sh
 
 # Set up login for github on user LightJack05
