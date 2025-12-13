@@ -1,4 +1,0 @@
-intel-media-driver
-lib32-vulkan-intel
-vulkan-intel
-intel-ucode
