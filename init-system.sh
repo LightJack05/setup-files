@@ -71,7 +71,7 @@ su - LightJack05 -c '/tmp/setup-files/packages.sh'
 # Set up login for github on user LightJack05
 su - LightJack05 -c 'gh auth login'
 # Set up dotfiles for LightJack05
-su - LightJack05 -c 'gh repo clone LightJack05/dotfiles ~/dotfiles'
+su - LightJack05 -c 'git clone https://github.com/LightJack05/dotfiles --recursive ~/dotfiles'
 su - LightJack05 -c '~/dotfiles/setup-complete.sh'
 
 # Final message

@@ -6,7 +6,7 @@ pacstrap -K /mnt base linux linux-firmware networkmanager sudo nvim vim
 genfstab -U /mnt >> /mnt/etc/fstab
 
 mkdir -p /mnt/tmp/setup-files
-git clone https://github.com/LightJack05/setup-files.git -o /mnt/tmp/setup-files
+git clone https://github.com/LightJack05/setup-files.git /mnt/tmp/setup-files
 
 echo 'Chrooting into the new system...'
 arch-chroot /mnt "/tmp/setup-files/init-system.sh"
