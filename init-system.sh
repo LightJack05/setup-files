@@ -63,8 +63,8 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # Set up sudo for wheel group
 sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
 
-./yay.sh
 ./user.sh
+su - LightJack05 -c '/init/setup-files/yay.sh'
 su - LightJack05 -c '/init/setup-files/packages.sh'
 ./services.sh
 
