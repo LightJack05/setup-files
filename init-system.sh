@@ -74,6 +74,10 @@ su - LightJack05 -c 'gh auth login'
 su - LightJack05 -c 'git clone https://github.com/LightJack05/dotfiles --recursive ~/dotfiles'
 su - LightJack05 -c '~/dotfiles/setup-complete.sh'
 
+# Regenerate grub config and initramfs in case user scripts made changes
+grub-mkconfig -o /boot/grub/grub.cfg
+mkinitcpio -P
+
 # Final message
 echo 'System initialization complete!'
 echo 'Finalize any configuration as needed and then reboot.'
