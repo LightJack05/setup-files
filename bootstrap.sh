@@ -9,4 +9,4 @@ mkdir -p /mnt/tmp/setup-files
 git clone https://github.com/LightJack05/setup-files.git /mnt/tmp/setup-files
 
 echo 'Chrooting into the new system...'
-arch-chroot /mnt "/tmp/setup-files/init-system.sh"
+arch-chroot /mnt "/mnt/tmp/setup-files/init-system.sh"
