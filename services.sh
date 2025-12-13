@@ -6,7 +6,6 @@ systemctl enable NetworkManager.service
 systemctl enable avahi-daemon.service
 systemctl enable bluetooth.service
 systemctl enable cups.service
-systemctl enable cups-browsed.service
 systemctl enable illuminanced.service
 systemctl enable libvirtd.service
 systemctl enable ly.service
