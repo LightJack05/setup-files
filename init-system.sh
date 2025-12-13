@@ -64,15 +64,15 @@ grub-mkconfig -o /boot/grub/grub.cfg
 sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
 
 ./user.sh
-sudo -u LightJack05 -c '/init/setup-files/yay.sh'
-sudo -u LightJack05 -c '/init/setup-files/packages.sh'
+sudo -u LightJack05 '/init/setup-files/yay.sh'
+sudo -u LightJack05 '/init/setup-files/packages.sh'
 ./services.sh
 
 # Set up login for github on user LightJack05
-sudo -u LightJack05 -c 'gh auth login'
+sudo -u LightJack05 'gh auth login'
 # Set up dotfiles for LightJack05
-sudo -u LightJack05 -c 'git clone https://github.com/LightJack05/dotfiles --recursive ~/dotfiles'
-sudo -u LightJack05 -c '~/dotfiles/setup-complete.sh'
+sudo -u LightJack05 'git clone https://github.com/LightJack05/dotfiles --recursive ~/dotfiles'
+sudo -u LightJack05 '~/dotfiles/setup-complete.sh'
 
 # Regenerate grub config and initramfs in case user scripts made changes
 grub-mkconfig -o /boot/grub/grub.cfg
