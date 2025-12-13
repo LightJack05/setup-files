@@ -12,6 +12,6 @@ systemctl enable ly@tty2.service
 systemctl enable power-profiles-daemon.service
 systemctl enable systemd-timesyncd.service
 systemctl enable ufw.service
-systemctl enable vmware-netwworks.service
+systemctl enable vmware-networks.service
 systemctl enable vmware-usbarbitrator.service
 
