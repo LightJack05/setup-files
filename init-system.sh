@@ -74,17 +74,15 @@ sudo -u LightJack05 '/init/setup-files/yay.sh'
 sudo -u LightJack05 '/init/setup-files/aur-packages.sh'
 ./packages.sh
 ./services.sh
-
-
-# Set up login for github on user LightJack05
-sudo -u LightJack05 'gh auth login'
-# Set up dotfiles for LightJack05
-sudo -u LightJack05 'git clone https://github.com/LightJack05/dotfiles --recursive ~/dotfiles'
-sudo -u LightJack05 '~/dotfiles/setup-complete.sh'
+./dotfiles.sh
 
 # Regenerate grub config and initramfs in case user scripts made changes
 grub-mkconfig -o /boot/grub/grub.cfg
 mkinitcpio -P
+
+# Set root password
+echo 'Please set root password'
+passwd
 
 # Final message
 echo 'System initialization complete!'
