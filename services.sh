@@ -8,7 +8,7 @@ systemctl enable bluetooth.service
 systemctl enable cups.service
 systemctl enable illuminanced.service
 systemctl enable libvirtd.service
-systemctl enable ly.service
+systemctl enable ly@tty2.service
 systemctl enable power-profiles-daemon.service
 systemctl enable systemd-timesyncd.service
 systemctl enable ufw.service
