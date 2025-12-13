@@ -69,11 +69,12 @@ echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 
 pacman -Sy
 
-
 ./user.sh
 sudo -u LightJack05 '/init/setup-files/yay.sh'
-sudo -u LightJack05 '/init/setup-files/packages.sh'
+sudo -u LightJack05 '/init/setup-files/aur-packages.sh'
+./packages.sh
 ./services.sh
+
 
 # Set up login for github on user LightJack05
 sudo -u LightJack05 'gh auth login'
