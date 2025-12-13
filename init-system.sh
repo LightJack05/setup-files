@@ -38,7 +38,7 @@ echo "$HOSTNAME" > /etc/hostname
 
 # Set up initramfs with hooks for encryption and LVM
 echo 'Setting up initramfs...'
-sed -i 's/^HOOKS=(base udev autodetect modconf block filesystems keyboard fsck)/HOOKS=(base udev autodetect modconf block encrypt lvm2 filesystems keyboard fsck)/' /etc/mkinitcpio.conf
+sed -i 's/^HOOKS=(.*)/HOOKS=(base udev autodetect modconf block encrypt lvm2 filesystems keyboard fsck)/' /etc/mkinitcpio.conf
 mkinitcpio -P
 
 
