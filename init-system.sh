@@ -64,7 +64,9 @@ grub-mkconfig -o /boot/grub/grub.cfg
 sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
 
 # Enable the multilib repository
-sed -i '/^\[multilib\]$/,/^Include/'s/^#//' /etc/pacman.conf
+echo '[multilib]' >> /etc/pacman.conf
+echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
+
 pacman -Sy
 
 
