@@ -33,7 +33,7 @@ echo 'LANG=en_US.UTF-8' > /etc/locale.conf
 echo 'KEYMAP=us' > /etc/vconsole.conf
 
 # Set hostname
-read -rp "Enter hostname: " HOSTNAME
+read -rp "Enter hostname: " HOSTNAME < /dev/tty
 echo "$HOSTNAME" > /etc/hostname
 
 # Set up initramfs with hooks for encryption and LVM
@@ -49,12 +49,12 @@ grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
 
 # Set up grub for possible full disk encryption
 lsblk
-read -p "We will open a vim window for you to copy the disk UUID of your root partition. Press enter to continue..."
+read -p "We will open a vim window for you to copy the disk UUID of your root partition. Press enter to continue..." < /dev/tty
 ls -lah /dev/disk/by-uuid/ | vim -
 
 echo 'You will now be able to edit the /etc/default/grub file to add the disk UUID to the GRUB_CMDLINE_LINUX_DEFAULT line.'
 echo 'Format reminder: GRUB_CMDLINE_LINUX_DEFAULT="quiet splash cryptdevice=UUID=your-disk-uuid:cryptroot root=/dev/mapper/cryptroot"'
-read -p " Press enter to continue..."
+read -p "Press enter to continue..." < /dev/tty
 vim /etc/default/grub
 
 # Generate grub configuration
