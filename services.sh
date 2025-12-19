@@ -14,4 +14,4 @@ systemctl enable systemd-timesyncd.service || true
 systemctl enable ufw.service || true
 systemctl enable vmware-networks.service || true
 systemctl enable vmware-usbarbitrator.service || true
-
+systemctl enable nix-daemon.service || true

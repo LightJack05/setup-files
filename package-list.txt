@@ -122,6 +122,7 @@ net-tools
 network-manager-applet
 networkmanager
 networkmanager-openvpn
+nix
 nmap
 noto-fonts-emoji
 npm
