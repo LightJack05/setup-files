@@ -274,6 +274,7 @@ ufw
 unicode-emoji
 unzip
 usbutils
+usb_modeswitch
 uwufetch
 vi
 vim
