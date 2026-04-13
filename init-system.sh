@@ -36,30 +36,6 @@ echo 'KEYMAP=us' > /etc/vconsole.conf
 read -rp "Enter hostname: " HOSTNAME < /dev/tty
 echo "$HOSTNAME" > /etc/hostname
 
-# Set up initramfs with hooks for encryption and LVM
-echo 'Setting up initramfs...'
-sed -i 's/^HOOKS=(.*)/HOOKS=(base udev autodetect modconf block encrypt lvm2 filesystems keyboard fsck)/' /etc/mkinitcpio.conf
-mkinitcpio -P
-
-
-# Install grub bootloader
-echo 'Installing GRUB bootloader...'
-pacman -S --noconfirm grub efibootmgr dosfstools os-prober
-grub-install --target=x86_64-efi --efi-directory=/boot --bootloader-id=GRUB
-
-# Set up grub for possible full disk encryption
-lsblk
-read -p "We will open a vim window for you to copy the disk UUID of your root partition. Press enter to continue..." < /dev/tty
-ls -lah /dev/disk/by-uuid/ | vim -
-
-echo 'You will now be able to edit the /etc/default/grub file to add the disk UUID to the GRUB_CMDLINE_LINUX_DEFAULT line.'
-echo 'Format reminder: GRUB_CMDLINE_LINUX_DEFAULT="quiet splash cryptdevice=UUID=your-disk-uuid:cryptroot root=/dev/mapper/cryptroot"'
-read -p "Press enter to continue..." < /dev/tty
-vim /etc/default/grub
-
-# Generate grub configuration
-grub-mkconfig -o /boot/grub/grub.cfg
-
 # Set up sudo for wheel group
 sed -i 's/^#\s*\(%wheel\s\+ALL=(ALL:ALL)\s\+ALL\)/\1/' /etc/sudoers
 
@@ -69,6 +45,64 @@ echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 
 pacman -Sy
 
+## Set up Initramfs, kernel cmdline and UKI build
+# Set up initramfs with hooks for encryption and LVM
+echo 'Setting up initramfs...'
+sed -i 's/^HOOKS=(.*)/HOOKS=(base udev autodetect modconf block encrypt lvm2 filesystems keyboard fsck)/' /etc/mkinitcpio.conf
+
+
+mkdir -p /efi/EFI/BOOT/
+mkdir -p /efi/EFI/Linux/
+
+echo 'Setting up mkinitcpio config preset...'
+cat << EOF > /etc/mkinitcpio.d/linux.preset
+# mkinitcpio preset file for the 'linux' package
+
+#ALL_config="/etc/mkinitcpio.conf"
+ALL_kver="/boot/vmlinuz-linux"
+
+PRESETS=('default' 'fallback')
+
+#default_config="/etc/mkinitcpio.conf"
+#default_image="/boot/initramfs-linux.img"
+default_uki="/efi/EFI/BOOT/BOOTX64.EFI"
+default_options="--cmdline /etc/kernel/cmdline"
+
+#fallback_config="/etc/mkinitcpio.conf"
+#fallback_image="/boot/initramfs-linux-fallback.img"
+fallback_uki="/efi/EFI/Linux/arch-linux-fallback.efi"
+fallback_options="-S autodetect"
+EOF
+
+lsblk
+read -p "We will open a vim window for you to copy the disk UUID of your root partition. Press enter to continue..." < /dev/tty
+ls -lah /dev/disk/by-uuid/ | vim -
+
+echo 'You will now be able to edit the /etc/kernel/cmdline file to add the disk UUID to the kernel cmdline.'
+echo 'Format reminder: cryptdevice=UUID=your-disk-uuid:cryptroot root=/dev/mapper/cryptroot'
+read -p "Press enter to continue..." < /dev/tty
+vim /etc/kernel/cmdline
+
+mkinitcpio -P
+
+
+## Setup secure boot
+# setup secure boot keys
+sbctl create-keys
+# Enroll keys and microsoft CA
+sbctl enroll-keys -m
+# Sign files
+sbctl sign -s /efi/EFI/BOOT/BOOTX64.EFI
+sbctl sign -s /efi/EFI/Linux/arch-linux-fallback.efi
+
+
+
+# Set root password
+echo 'Please set root password'
+passwd
+
+
+## Software Installation, dotfiles
 ./user.sh
 sudo -u LightJack05 '/init/setup-files/yay.sh'
 sudo -u LightJack05 '/init/setup-files/aur-packages.sh'
@@ -76,13 +110,6 @@ sudo -u LightJack05 '/init/setup-files/aur-packages.sh'
 ./services.sh
 ./dotfiles.sh
 
-# Regenerate grub config and initramfs in case user scripts made changes
-grub-mkconfig -o /boot/grub/grub.cfg
-mkinitcpio -P
-
-# Set root password
-echo 'Please set root password'
-passwd
 
 # Final message
 echo 'System initialization complete!'
