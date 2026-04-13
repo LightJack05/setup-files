@@ -2,7 +2,7 @@
 set -euxo pipefail
 
 echo 'Bootstrapping new system...'
-pacstrap -K /mnt base linux linux-firmware networkmanager sudo nvim vim zsh lvm2
+pacstrap -K /mnt base linux linux-firmware networkmanager sudo neovim vim zsh lvm2 sbctl efibootmgr
 genfstab -U /mnt >> /mnt/etc/fstab
 
 mkdir -p /mnt/init/setup-files
