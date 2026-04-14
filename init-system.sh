@@ -45,6 +45,12 @@ echo 'Include = /etc/pacman.d/mirrorlist' >> /etc/pacman.conf
 
 pacman -Sy
 
+## Setup secure boot
+# setup secure boot keys
+sbctl create-keys
+# Enroll keys and microsoft CA
+sbctl enroll-keys -m
+
 ## Set up Initramfs, kernel cmdline and UKI build
 # Set up initramfs with hooks for encryption and LVM
 echo 'Setting up initramfs...'
@@ -53,6 +59,7 @@ sed -i 's/^HOOKS=(.*)/HOOKS=(base udev autodetect modconf block encrypt lvm2 fil
 
 mkdir -p /efi/EFI/BOOT/
 mkdir -p /efi/EFI/Linux/
+touch /etc/kernel/cmdline
 
 echo 'Setting up mkinitcpio config preset...'
 cat << EOF > /etc/mkinitcpio.d/linux.preset
@@ -84,16 +91,6 @@ read -p "Press enter to continue..." < /dev/tty
 vim /etc/kernel/cmdline
 
 mkinitcpio -P
-
-
-## Setup secure boot
-# setup secure boot keys
-sbctl create-keys
-# Enroll keys and microsoft CA
-sbctl enroll-keys -m
-# Sign files
-sbctl sign -s /efi/EFI/BOOT/BOOTX64.EFI
-sbctl sign -s /efi/EFI/Linux/arch-linux-fallback.efi
 
 
 
