@@ -54,7 +54,7 @@ sbctl enroll-keys -m
 ## Set up Initramfs, kernel cmdline and UKI build
 # Set up initramfs with hooks for encryption and LVM
 echo 'Setting up initramfs...'
-sed -i 's/^HOOKS=(.*)/HOOKS=(base udev autodetect modconf block encrypt lvm2 filesystems keyboard fsck)/' /etc/mkinitcpio.conf
+sed -i 's/^HOOKS=(.*)/HOOKS=(systemd autodetect modconf keyboard sd-vconsole block sd-encrypt filesystems fsck)/' /etc/mkinitcpio.conf
 
 
 mkdir -p /efi/EFI/BOOT/
@@ -81,14 +81,19 @@ fallback_uki="/efi/EFI/Linux/arch-linux-fallback.efi"
 fallback_options="-S autodetect"
 EOF
 
-lsblk
-read -p "We will open a vim window for you to copy the disk UUID of your root partition. Press enter to continue..." < /dev/tty
-ls -lah /dev/disk/by-uuid/ | vim -
+read -rp "Configure disk encryption? (y/N): " CONFIGURE_ENCRYPTION < /dev/tty
 
-echo 'You will now be able to edit the /etc/kernel/cmdline file to add the disk UUID to the kernel cmdline.'
-echo 'Format reminder: cryptdevice=UUID=your-disk-uuid:cryptroot root=/dev/mapper/cryptroot'
-read -p "Press enter to continue..." < /dev/tty
-vim /etc/kernel/cmdline
+if [[ "${CONFIGURE_ENCRYPTION,,}" == "y" ]]; then
+    lsblk
+    read -p "We will open a vim window for you to copy the disk UUID of your root partition. Press enter to continue..." < /dev/tty
+    ls -lah /dev/disk/by-uuid/ | vim -
+
+    echo 'You will now be able to edit the /etc/kernel/cmdline file to add the disk UUID to the kernel cmdline.'
+    echo 'Format reminder: cryptdevice=UUID=your-disk-uuid:cryptroot root=/dev/mapper/cryptroot'
+    read -p "Press enter to continue..." < /dev/tty
+    echo 'cryptdevice=UUID=your-disk-uuid:CryptLVM root=/dev/mapper/CryptLVM' > /etc/kernel/cmdline
+    vim /etc/kernel/cmdline
+fi
 
 mkinitcpio -P
 
